@@ -15,7 +15,7 @@ with DAG(
     dag_id="s3_snow",
     default_args=default_args,
     description="DAG to transfer data from S3 to Snowflake",
-    schedule_interval="",
+    schedule_interval="@daily",
     start_date=datetime(2024, 12, 8),
     catchup=False,
 ) as dag:
