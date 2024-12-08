@@ -28,4 +28,3 @@ with DAG(
         stage="s3_snow_stage",
         file_format="(type=csv, field_delimiter=',', skip_header=1)",
     )
-    
