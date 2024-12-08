@@ -12,12 +12,6 @@ default_args = {
     "retries": 1,
 }
 
-# AWS and Snowflake secrets as Airflow Variables (adjust names as needed)
-aws_access_key_id = Variable.get("AWS_ACCESS_KEY_ID")
-aws_secret_access_key = Variable.get("AWS_SECRET_ACCESS_KEY")
-snowflake_username = Variable.get("SNOWFLAKE_USERNAME")
-snowflake_password = Variable.get("SNOWFLAKE_PASSWORD")
-
 with DAG(
     dag_id="s3_snow",
     default_args=default_args,
@@ -26,17 +20,13 @@ with DAG(
     start_date=datetime(2024, 12, 8),
     catchup=False,
 ) as dag:
-
     s3_to_snowflake = S3ToSnowflakeOperator(
         task_id="s3_to_snowflake",
         s3_bucket="scarfdata",
         s3_key="",
-        aws_conn_id="aws_default",  # Ensure this connection exists in Airflow
-        snowflake_conn_id="snowflake_default",  # Ensure this connection exists in Airflow
+        aws_conn_id="aws_default",
+        snowflake_conn_id="snowflake_default",
         stage="public.s3_snow_stage",
         file_format="(type=csv, field_delimiter=',', skip_header=1)",
     )
-
-
-
-
+    
