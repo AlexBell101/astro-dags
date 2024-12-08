@@ -1,6 +1,10 @@
 
+try:
+    from airflow.providers.amazon.aws.transfers.s3_to_snowflake import S3ToSnowflakeOperator
+except ImportError:
+    from airflow.providers.amazon.aws.operators.s3_to_snowflake import S3ToSnowflakeOperator
+
 from airflow import DAG
-from airflow.providers.amazon.aws.transfers.s3_to_snowflake import S3ToSnowflakeOperator
 from datetime import datetime
 
 default_args = {
@@ -28,3 +32,4 @@ with DAG(
         stage="s3_snow_stage",
         file_format="(type=csv, field_delimiter=',', skip_header=1)",
     )
+    
