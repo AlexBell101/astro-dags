@@ -11,7 +11,7 @@ default_args = {
 }
 
 with DAG(
-    dag_id="boot",
+    dag_id="booty",
     default_args=default_args,
     schedule_interval="Hourly",
     start_date=datetime(2024, 12, 9),
@@ -21,12 +21,12 @@ with DAG(
     # Task: Load Data into Snowflake
     load_to_snowflake = CopyFromExternalStageToSnowflakeOperator(
         task_id="load_s3_to_snowflake",
-        table="scarf",  # Ensure this table exists
-        database="TEST_DB",
-        schema="public",
+        table="your_table_name",  # Replace with your Snowflake table name
+        database="your_database_name",  # Replace with your Snowflake database name
+        schema="your_schema_name",  # Replace with your Snowflake schema name
+        stage="your_stage_name",  # Replace with your Snowflake stage name
         file_format="(TYPE = CSV, FIELD_DELIMITER = ',', SKIP_HEADER = 1)",
         pattern=".*\\.csv",
-        snowflake_conn_id="snowflake",
-        s3_key="Scarf/company-rollups-scarf-export-2024-08-05-2024-09-05.csv",  # File path in S3
-        aws_conn_id="s3",
+        snowflake_conn_id="snowflake",  # Replace with your Snowflake connection ID
+        aws_conn_id="s3",  # Replace with your AWS connection ID
     )
