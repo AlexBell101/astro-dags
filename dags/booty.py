@@ -21,11 +21,11 @@ with DAG(
     # Task: Load Data into Snowflake
     load_to_snowflake = CopyFromExternalStageToSnowflakeOperator(
         task_id="load_s3_to_snowflake",
-        table="your_table_name",  # Replace with your Snowflake table name
-        database="your_database_name",  # Replace with your Snowflake database name
-        schema="your_schema_name",  # Replace with your Snowflake schema name
-        stage="your_stage_name",  # Replace with your Snowflake stage name
+        table="scarf",  # Replace with your Snowflake table name
+        database="TEST_DB",  # Replace with your Snowflake database name
+        schema="PUBLIC",  # Replace with your Snowflake schema name
+        stage="SCARF",  # Replace with your Snowflake stage name
         file_format="(TYPE = CSV, FIELD_DELIMITER = ',', SKIP_HEADER = 1)",
         pattern=".*\\.csv",
-        snowflake_conn_id="your_snowflake_conn_id",  # Replace with the Astro Snowflake connection ID
+        snowflake_conn_id="snowflake",  # Replace with the Astro Snowflake connection ID
     )
