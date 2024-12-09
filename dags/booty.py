@@ -28,5 +28,4 @@ with DAG(
         file_format="(TYPE = CSV, FIELD_DELIMITER = ',', SKIP_HEADER = 1)",
         pattern=".*\\.csv",
         snowflake_conn_id="snowflake",  # Replace with your Snowflake connection ID
-        aws_conn_id="s3",  # Replace with your AWS connection ID
     )
