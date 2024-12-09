@@ -13,7 +13,7 @@ default_args = {
 with DAG(
     dag_id="booty",
     default_args=default_args,
-    schedule_interval="Hourly",
+    schedule_interval="@hourly",  # Use Airflow's valid presets or a proper cron expression
     start_date=datetime(2024, 12, 9),
     catchup=False,
 ) as dag:
@@ -27,5 +27,5 @@ with DAG(
         stage="your_stage_name",  # Replace with your Snowflake stage name
         file_format="(TYPE = CSV, FIELD_DELIMITER = ',', SKIP_HEADER = 1)",
         pattern=".*\\.csv",
-        snowflake_conn_id="snowflake",  # Replace with your Snowflake connection ID
+        snowflake_conn_id="your_snowflake_conn_id",  # Replace with the Astro Snowflake connection ID
     )
